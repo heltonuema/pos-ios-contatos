@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D85E0F901D78EE5F00F92D12 /* Contato+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D85E0F8D1D78EE5F00F92D12 /* Contato+CoreDataProperties.m */; };
+		D85E0F911D78EE5F00F92D12 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = D85E0F8F1D78EE5F00F92D12 /* Contato.m */; };
 		D8731F0F1D6FAD8C0003477B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8731F0E1D6FAD8C0003477B /* main.m */; };
 		D8731F121D6FAD8C0003477B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8731F111D6FAD8C0003477B /* AppDelegate.m */; };
 		D8731F151D6FAD8C0003477B /* Contato.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8731F131D6FAD8C0003477B /* Contato.xcdatamodeld */; };
@@ -15,9 +17,15 @@
 		D8731F1E1D6FAD8C0003477B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8731F1C1D6FAD8C0003477B /* Main.storyboard */; };
 		D8731F201D6FAD8C0003477B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8731F1F1D6FAD8C0003477B /* Assets.xcassets */; };
 		D8731F231D6FAD8C0003477B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8731F211D6FAD8C0003477B /* LaunchScreen.storyboard */; };
+		D8C680471D82233800D53832 /* NewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C680461D82233800D53832 /* NewViewController.m */; };
+		D8C6804A1D822A9D00D53832 /* UIViewController+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C680491D822A9D00D53832 /* UIViewController+CoreData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D85E0F8C1D78EE5F00F92D12 /* Contato+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Contato+CoreDataProperties.h"; path = "../Modelos/Contato+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D85E0F8D1D78EE5F00F92D12 /* Contato+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Contato+CoreDataProperties.m"; path = "../Modelos/Contato+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D85E0F8E1D78EE5F00F92D12 /* Contato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contato.h; path = ../Modelos/Contato.h; sourceTree = "<group>"; };
+		D85E0F8F1D78EE5F00F92D12 /* Contato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Contato.m; path = ../Modelos/Contato.m; sourceTree = "<group>"; };
 		D8731F0A1D6FAD8C0003477B /* Contato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8731F0E1D6FAD8C0003477B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D8731F101D6FAD8C0003477B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -31,6 +39,10 @@
 		D8731F1F1D6FAD8C0003477B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8731F221D6FAD8C0003477B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8731F241D6FAD8C0003477B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8C680451D82233800D53832 /* NewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewViewController.h; sourceTree = "<group>"; };
+		D8C680461D82233800D53832 /* NewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewViewController.m; sourceTree = "<group>"; };
+		D8C680481D822A9D00D53832 /* UIViewController+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CoreData.h"; sourceTree = "<group>"; };
+		D8C680491D822A9D00D53832 /* UIViewController+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CoreData.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +56,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D85E0F921D78EE9300F92D12 /* Modelos */ = {
+			isa = PBXGroup;
+			children = (
+				D85E0F8D1D78EE5F00F92D12 /* Contato+CoreDataProperties.m */,
+				D85E0F8E1D78EE5F00F92D12 /* Contato.h */,
+				D85E0F8F1D78EE5F00F92D12 /* Contato.m */,
+				D85E0F8C1D78EE5F00F92D12 /* Contato+CoreDataProperties.h */,
+			);
+			name = Modelos;
+			sourceTree = "<group>";
+		};
 		D8731F011D6FAD8C0003477B = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +86,7 @@
 		D8731F0C1D6FAD8C0003477B /* Contato */ = {
 			isa = PBXGroup;
 			children = (
+				D85E0F921D78EE9300F92D12 /* Modelos */,
 				D8731F101D6FAD8C0003477B /* AppDelegate.h */,
 				D8731F111D6FAD8C0003477B /* AppDelegate.m */,
 				D8731F161D6FAD8C0003477B /* MasterViewController.h */,
@@ -75,6 +99,10 @@
 				D8731F241D6FAD8C0003477B /* Info.plist */,
 				D8731F131D6FAD8C0003477B /* Contato.xcdatamodeld */,
 				D8731F0D1D6FAD8C0003477B /* Supporting Files */,
+				D8C680451D82233800D53832 /* NewViewController.h */,
+				D8C680461D82233800D53832 /* NewViewController.m */,
+				D8C680481D822A9D00D53832 /* UIViewController+CoreData.h */,
+				D8C680491D822A9D00D53832 /* UIViewController+CoreData.m */,
 			);
 			path = Contato;
 			sourceTree = "<group>";
@@ -157,11 +185,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85E0F911D78EE5F00F92D12 /* Contato.m in Sources */,
 				D8731F1B1D6FAD8C0003477B /* DetailViewController.m in Sources */,
 				D8731F181D6FAD8C0003477B /* MasterViewController.m in Sources */,
 				D8731F151D6FAD8C0003477B /* Contato.xcdatamodeld in Sources */,
 				D8731F121D6FAD8C0003477B /* AppDelegate.m in Sources */,
+				D8C6804A1D822A9D00D53832 /* UIViewController+CoreData.m in Sources */,
+				D85E0F901D78EE5F00F92D12 /* Contato+CoreDataProperties.m in Sources */,
 				D8731F0F1D6FAD8C0003477B /* main.m in Sources */,
+				D8C680471D82233800D53832 /* NewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +342,7 @@
 				D8731F291D6FAD8C0003477B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

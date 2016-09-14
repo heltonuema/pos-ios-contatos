@@ -8,12 +8,15 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "UIViewController+CoreData.m"
 
 @interface MasterViewController ()
 
 @end
 
 @implementation MasterViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,13 +39,17 @@
 }
 
 - (void)insertNewObject:(id)sender {
+    
+    [self performSegueWithIdentifier:@"showDetail" sender:sender];
+    
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
         
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [newManagedObject setValue:@"Mais um" forKey:@"nome"];
+    [newManagedObject setValue:@"Mais outro" forKey:@"sobrenome"];
         
     // Save the context.
     NSError *error = nil;
@@ -58,12 +65,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:object];
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+//        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+//        [controller setDetailItem:object];
+//        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+//        controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
 
@@ -106,7 +113,21 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object {
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.textLabel.text = [[object valueForKey:@"nome"] description];
+}
+
+-(NSString *)test:(NSNumber *) n error:(NSError **) ref{
+    
+    NSInteger a = [n integerValue];
+    
+    if(!a){
+        if(ref){
+            *ref = [NSError errorWithDomain:@"" code:23 userInfo:@{}];
+        }
+        return nil;
+    }
+    
+    return @"";
 }
 
 #pragma mark - Fetched results controller
@@ -119,14 +140,22 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Contato" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
+    NSError * erro = nil;
+    
+    
+    NSArray<NSManagedObject *> * events = [self.managedObjectContext executeFetchRequest:fetchRequest error:&erro];
+    if(erro){
+        
+    }
+    
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nome" ascending:NO];
 
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
@@ -197,6 +226,10 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+-(IBAction)unwindToMaster:(UIStoryboardSegue *) segue{
+    
 }
 
 /*
