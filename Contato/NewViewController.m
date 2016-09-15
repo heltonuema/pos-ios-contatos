@@ -14,7 +14,11 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *nomeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sobrenomeTextField;
+@property (weak, nonatomic) NSManagedObject *contatoManagedObject;
+@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) NSEntityDescription *entityDescription;
 
+//-(void)setContatoManagedObject:(NSManagedObject *)object;
 
 @end
 
@@ -22,7 +26,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if(_contatoManagedObject){
+        _nomeTextField.text = [_contatoManagedObject valueForKey:@"nome"];
+        _sobrenomeTextField.text = [_contatoManagedObject valueForKey:@"sobrenome"];
+    }
     // Do any additional setup after loading the view.
+}
+- (IBAction)excluir:(id)sender {
+    
+    if(_contatoManagedObject){
+        [_managedObjectContext deleteObject: _contatoManagedObject];
+        NSError * error = nil;
+        if (![_managedObjectContext save:&error]) {
+            
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    [self performSegueWithIdentifier:@"unwindToMaster" sender:sender];
 }
 
 -(IBAction)salvar:(id)sender{
@@ -30,11 +51,33 @@
     
     if(_nomeTextField.text.length && _sobrenomeTextField.text.length){
         
-    
-        Contato * contato = [NSEntityDescription insertNewObjectForEntityForName:@"Contato" inManagedObjectContext:[self managedObjectContext]];
-    
-        contato.nome = _nomeTextField.text;
-        contato.sobrenome = _sobrenomeTextField.text;
+        
+        if(_contatoManagedObject){
+            [_contatoManagedObject setValue:_nomeTextField.text forKey:@"nome"];
+            [_contatoManagedObject setValue:_sobrenomeTextField.text forKey:@"sobrenome"];
+        }
+        else{
+//            NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//            NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+            NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[_entityDescription name] inManagedObjectContext:_managedObjectContext];
+            
+            // If appropriate, configure the new managed object.
+            // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+            [newManagedObject setValue:_nomeTextField.text forKey:@"nome"];
+            [newManagedObject setValue:_sobrenomeTextField.text forKey:@"sobrenome"];
+            
+//            contato.nome = _nomeTextField.text;
+//            contato.sobrenome = _sobrenomeTextField.text;
+        }
+        
+        NSError * error = nil;
+        if (![_managedObjectContext save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        
         [self performSegueWithIdentifier:@"unwindToMaster" sender:sender];
         
     }else{
@@ -80,6 +123,16 @@
     }
     
 }
+
+-(void)setContatoManagedObject:(NSManagedObject *)managedObject{
+    _contatoManagedObject = managedObject;
+}
+
+-(void)setManagedObjectContext:(NSManagedObjectContext *)context andEntityDescription:(NSEntityDescription *)entityDescription{
+    _managedObjectContext = context;
+    _entityDescription = entityDescription;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

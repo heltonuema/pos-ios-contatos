@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 
 @class DetailViewController;
+@class NewViewController;
+
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 

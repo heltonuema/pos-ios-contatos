@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "UIViewController+CoreData.m"
+#import "NewViewController.h"
 
 @interface MasterViewController ()
 
@@ -42,29 +43,66 @@
     
     [self performSegueWithIdentifier:@"showDetail" sender:sender];
     
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-        
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:@"Mais um" forKey:@"nome"];
-    [newManagedObject setValue:@"Mais outro" forKey:@"sobrenome"];
-        
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+//        
+//    // If appropriate, configure the new managed object.
+//    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+//    [newManagedObject setValue:@"Mais um" forKey:@"nome"];
+//    [newManagedObject setValue:@"Mais outro" forKey:@"sobrenome"];
+//        
+//    // Save the context.
+//    NSError *error = nil;
+//    if (![context save:&error]) {
+//        // Replace this implementation with code to handle the error appropriately.
+//        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+//    }
 }
 
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        
+        
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+        NewViewController *nvc = (NewViewController *)segue.destinationViewController;
+        [nvc setManagedObjectContext:context andEntityDescription:entity];
+        if(indexPath){
+            NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+            
+            [nvc setContatoManagedObject:object];
+
+            
+//            NSString *nomeObject = [object valueForKey:@"nome"];
+//            
+//            UIAlertController * alert=   [UIAlertController
+//                                          alertControllerWithTitle:@"Info"
+//                                          message:nomeObject
+//                                          preferredStyle:UIAlertControllerStyleAlert];
+//            
+//            UIAlertAction* ok = [UIAlertAction
+//                                 actionWithTitle:@"OK"
+//                                 style:UIAlertActionStyleDefault
+//                                 handler:^(UIAlertAction * action)
+//                                 {
+//                                     [alert dismissViewControllerAnimated:YES completion:nil];
+//                                     
+//                                 }];
+//
+//            
+//            [alert addAction:ok];
+//            //[self presentViewController:alert animated:YES completion:nil];
+//            
+            [self.tableView deselectRowAtIndexPath:indexPath animated:true];
+            
+        }
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 //        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 //        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
@@ -113,7 +151,7 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object {
-    cell.textLabel.text = [[object valueForKey:@"nome"] description];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [[object valueForKey:@"nome"] description], [[object valueForKey:@"sobrenome"] description]] ;
 }
 
 -(NSString *)test:(NSNumber *) n error:(NSError **) ref{
@@ -155,7 +193,7 @@
     }
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nome" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nome" ascending:YES];
 
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
