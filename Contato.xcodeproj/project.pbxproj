@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D85493F31D94974200EC5CFF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85493F21D94974200EC5CFF /* MapKit.framework */; };
 		D85E0F901D78EE5F00F92D12 /* Contato+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D85E0F8D1D78EE5F00F92D12 /* Contato+CoreDataProperties.m */; };
 		D85E0F911D78EE5F00F92D12 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = D85E0F8F1D78EE5F00F92D12 /* Contato.m */; };
 		D8731F0F1D6FAD8C0003477B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8731F0E1D6FAD8C0003477B /* main.m */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D85493F21D94974200EC5CFF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D85493F41D94AE7200EC5CFF /* Contato 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Contato 2.xcdatamodel"; sourceTree = "<group>"; };
 		D85E0F8C1D78EE5F00F92D12 /* Contato+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Contato+CoreDataProperties.h"; path = "../Modelos/Contato+CoreDataProperties.h"; sourceTree = "<group>"; };
 		D85E0F8D1D78EE5F00F92D12 /* Contato+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Contato+CoreDataProperties.m"; path = "../Modelos/Contato+CoreDataProperties.m"; sourceTree = "<group>"; };
 		D85E0F8E1D78EE5F00F92D12 /* Contato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contato.h; path = ../Modelos/Contato.h; sourceTree = "<group>"; };
@@ -50,12 +53,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85493F31D94974200EC5CFF /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D85493F11D94974100EC5CFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D85493F21D94974200EC5CFF /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D85E0F921D78EE9300F92D12 /* Modelos */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +84,7 @@
 			children = (
 				D8731F0C1D6FAD8C0003477B /* Contato */,
 				D8731F0B1D6FAD8C0003477B /* Products */,
+				D85493F11D94974100EC5CFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +159,11 @@
 				TargetAttributes = {
 					D8731F091D6FAD8C0003477B = {
 						CreatedOnToolsVersion = 7.3.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -354,9 +372,10 @@
 		D8731F131D6FAD8C0003477B /* Contato.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D85493F41D94AE7200EC5CFF /* Contato 2.xcdatamodel */,
 				D8731F141D6FAD8C0003477B /* Contato.xcdatamodel */,
 			);
-			currentVersion = D8731F141D6FAD8C0003477B /* Contato.xcdatamodel */;
+			currentVersion = D85493F41D94AE7200EC5CFF /* Contato 2.xcdatamodel */;
 			path = Contato.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
