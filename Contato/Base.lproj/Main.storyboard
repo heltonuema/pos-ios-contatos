@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RMx-3f-FxP">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RMx-3f-FxP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -116,21 +116,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NXK-Wn-glx">
-                                <frame key="frameInset" minX="20" minY="72" width="128" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NXK-Wn-glx">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NXK-Wn-glx" secondAttribute="height" multiplier="1:1" id="AlN-pl-4Qw"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="ego-jj-cFZ"/>
                                     <constraint firstAttribute="height" constant="128" id="wav-wP-fqQ"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-pS-dAb">
-                                <frame key="frameInset" minX="156" minY="72" width="424" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-pS-dAb">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZP0-DG-hTP">
-                                <frame key="frameInset" minX="156" minY="110" width="424" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZP0-DG-hTP">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -140,18 +137,38 @@
                                     <action selector="excluir:" destination="GlJ-Nm-c2P" eventType="touchUpInside" id="RNa-ox-iOg"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6e-h9-1I8">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97P-J7-xmu">
+                                <state key="normal" title="Mostrar Endereço"/>
+                                <connections>
+                                    <action selector="geocode:" destination="GlJ-Nm-c2P" eventType="touchUpInside" id="wA2-EP-z9T"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Rue-9L-rAw"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZP0-DG-hTP" firstAttribute="leading" secondItem="NXK-Wn-glx" secondAttribute="trailing" constant="8" id="68g-eO-ewD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a6e-h9-1I8" secondAttribute="trailing" id="9MO-Hk-PIy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xXb-tX-0ET" secondAttribute="trailing" id="CMX-PH-6Pd"/>
+                            <constraint firstItem="RXS-Hj-XeA" firstAttribute="top" secondItem="Rue-9L-rAw" secondAttribute="bottom" constant="8" id="D6M-lG-2rs"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Rue-9L-rAw" secondAttribute="leading" id="Dug-fF-jlW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="97P-J7-xmu" secondAttribute="trailing" id="N5q-Kx-MBo"/>
+                            <constraint firstItem="a6e-h9-1I8" firstAttribute="top" secondItem="NXK-Wn-glx" secondAttribute="bottom" constant="8" id="W2E-Ax-tl9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZP0-DG-hTP" secondAttribute="trailing" id="Wdv-Oz-2Tl"/>
                             <constraint firstItem="NXK-Wn-glx" firstAttribute="top" secondItem="0Rn-wv-EM7" secondAttribute="bottom" constant="8" id="atY-uv-TR9"/>
                             <constraint firstItem="ZP0-DG-hTP" firstAttribute="top" secondItem="eRx-pS-dAb" secondAttribute="bottom" constant="8" id="bB2-ra-gHt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rue-9L-rAw" secondAttribute="trailing" id="bV2-TW-WzC"/>
                             <constraint firstAttribute="leadingMargin" secondItem="NXK-Wn-glx" secondAttribute="leading" id="faV-zd-wCv"/>
                             <constraint firstItem="eRx-pS-dAb" firstAttribute="leading" secondItem="NXK-Wn-glx" secondAttribute="trailing" constant="8" id="jye-oj-vfx"/>
+                            <constraint firstItem="Rue-9L-rAw" firstAttribute="top" secondItem="97P-J7-xmu" secondAttribute="bottom" constant="8" id="kbx-Lu-NWv"/>
                             <constraint firstItem="NXK-Wn-glx" firstAttribute="leading" secondItem="er2-RW-8ox" secondAttribute="leadingMargin" id="lGi-Ug-MUA"/>
                             <constraint firstItem="xXb-tX-0ET" firstAttribute="top" secondItem="ZP0-DG-hTP" secondAttribute="bottom" constant="8" id="mH9-oc-1bc"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="a6e-h9-1I8" secondAttribute="leading" id="pIo-em-Pzh"/>
+                            <constraint firstItem="97P-J7-xmu" firstAttribute="top" secondItem="a6e-h9-1I8" secondAttribute="bottom" constant="8" id="pj6-5n-JxP"/>
                             <constraint firstItem="eRx-pS-dAb" firstAttribute="top" secondItem="NXK-Wn-glx" secondAttribute="top" id="pql-R8-zP6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eRx-pS-dAb" secondAttribute="trailing" id="qQy-V8-x47"/>
                         </constraints>
@@ -168,6 +185,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="enderecoTextField" destination="a6e-h9-1I8" id="vuT-ab-1Gq"/>
                         <outlet property="nomeTextField" destination="eRx-pS-dAb" id="9OP-Qc-05Y"/>
                         <outlet property="sobrenomeTextField" destination="ZP0-DG-hTP" id="OFE-Dt-TfH"/>
                         <segue destination="lAU-aE-YYK" kind="unwind" identifier="unwindToMaster" unwindAction="unwindToMaster:" id="HFc-cD-J0a"/>
@@ -176,7 +194,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXJ-BG-789" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lAU-aE-YYK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="709" y="209"/>
+            <point key="canvasLocation" x="708" y="208.24587706146929"/>
         </scene>
     </scenes>
 </document>

@@ -11,13 +11,42 @@
 #import "UIViewController+CoreData.m"
 #import "NewViewController.h"
 
-@interface MasterViewController ()
+@import CoreLocation;
+
+
+@interface MasterViewController () <CLLocationManagerDelegate>
+
+@property CLLocationManager * locationManager;
 
 @end
 
 @implementation MasterViewController
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    [locations enumerateObjectsUsingBlock:^(CLLocation * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSLog(@"%@",obj);
+        
+    }];
+    
+}
 
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    
+    switch (status) {
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+            self.locationManager.distanceFilter = 100;
+            [self.locationManager startUpdatingLocation];
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,11 +56,19 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [super viewWillAppear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.locationManager requestWhenInUseAuthorization];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,14 +9,16 @@
 #import "NewViewController.h"
 #import "Contato.h"
 #import "UIViewController+CoreData.h"
-
+@import MapKit;
 @interface NewViewController ()
 
+@property CLGeocoder *geocoder;
 @property (weak, nonatomic) IBOutlet UITextField *nomeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sobrenomeTextField;
 @property (weak, nonatomic) NSManagedObject *contatoManagedObject;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) NSEntityDescription *entityDescription;
+@property (weak, nonatomic) IBOutlet UITextField *enderecoTextField;
 
 //-(void)setContatoManagedObject:(NSManagedObject *)object;
 
@@ -29,9 +31,23 @@
     if(_contatoManagedObject){
         _nomeTextField.text = [_contatoManagedObject valueForKey:@"nome"];
         _sobrenomeTextField.text = [_contatoManagedObject valueForKey:@"sobrenome"];
+        _enderecoTextField.text = [_contatoManagedObject valueForKey:@"endereco"];
     }
+    _geocoder = [[CLGeocoder alloc]init];
     // Do any additional setup after loading the view.
 }
+- (IBAction)geocode:(id)sender {
+    [self.geocoder geocodeAddressString:_enderecoTextField.text completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"%@", error);
+        }
+        [placemarks enumerateObjectsUsingBlock:^(CLPlacemark * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSLog(@"%@",obj);
+        }];
+    }];
+    
+}
+
 - (IBAction)excluir:(id)sender {
     
     if(_contatoManagedObject){
@@ -65,6 +81,7 @@
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
             [newManagedObject setValue:_nomeTextField.text forKey:@"nome"];
             [newManagedObject setValue:_sobrenomeTextField.text forKey:@"sobrenome"];
+            [newManagedObject setValue:_enderecoTextField.text forKey:@"endereco"];
             
 //            contato.nome = _nomeTextField.text;
 //            contato.sobrenome = _sobrenomeTextField.text;
