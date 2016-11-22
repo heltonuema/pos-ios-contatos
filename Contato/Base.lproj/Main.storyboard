@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RMx-3f-FxP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RMx-3f-FxP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -186,6 +186,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="enderecoTextField" destination="a6e-h9-1I8" id="vuT-ab-1Gq"/>
+                        <outlet property="map" destination="Rue-9L-rAw" id="jjg-JS-FcB"/>
                         <outlet property="nomeTextField" destination="eRx-pS-dAb" id="9OP-Qc-05Y"/>
                         <outlet property="sobrenomeTextField" destination="ZP0-DG-hTP" id="OFE-Dt-TfH"/>
                         <segue destination="lAU-aE-YYK" kind="unwind" identifier="unwindToMaster" unwindAction="unwindToMaster:" id="HFc-cD-J0a"/>

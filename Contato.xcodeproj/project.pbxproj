@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8282C821D9DD4C30053D63A /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = D8282C811D9DD4C30053D63A /* Address.m */; };
 		D85493F31D94974200EC5CFF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85493F21D94974200EC5CFF /* MapKit.framework */; };
 		D85E0F901D78EE5F00F92D12 /* Contato+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D85E0F8D1D78EE5F00F92D12 /* Contato+CoreDataProperties.m */; };
 		D85E0F911D78EE5F00F92D12 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = D85E0F8F1D78EE5F00F92D12 /* Contato.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8282C801D9DD4C30053D63A /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		D8282C811D9DD4C30053D63A /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		D85493F21D94974200EC5CFF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D85493F41D94AE7200EC5CFF /* Contato 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Contato 2.xcdatamodel"; sourceTree = "<group>"; };
 		D85E0F8C1D78EE5F00F92D12 /* Contato+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Contato+CoreDataProperties.h"; path = "../Modelos/Contato+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -60,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8282C7F1D9DD36D0053D63A /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D8282C801D9DD4C30053D63A /* Address.h */,
+				D8282C811D9DD4C30053D63A /* Address.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		D85493F11D94974100EC5CFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +111,7 @@
 		D8731F0C1D6FAD8C0003477B /* Contato */ = {
 			isa = PBXGroup;
 			children = (
+				D8282C7F1D9DD36D0053D63A /* Map */,
 				D85E0F921D78EE9300F92D12 /* Modelos */,
 				D8731F101D6FAD8C0003477B /* AppDelegate.h */,
 				D8731F111D6FAD8C0003477B /* AppDelegate.m */,
@@ -211,6 +224,7 @@
 				D8C6804A1D822A9D00D53832 /* UIViewController+CoreData.m in Sources */,
 				D85E0F901D78EE5F00F92D12 /* Contato+CoreDataProperties.m in Sources */,
 				D8731F0F1D6FAD8C0003477B /* main.m in Sources */,
+				D8282C821D9DD4C30053D63A /* Address.m in Sources */,
 				D8C680471D82233800D53832 /* NewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

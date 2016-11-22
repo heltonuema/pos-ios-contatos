@@ -9,17 +9,22 @@
 #import "NewViewController.h"
 #import "Contato.h"
 #import "UIViewController+CoreData.h"
+#import "Address.h"
 @import MapKit;
 @interface NewViewController ()
 
 @property CLGeocoder *geocoder;
+@property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (weak, nonatomic) IBOutlet UITextField *nomeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sobrenomeTextField;
 @property (weak, nonatomic) NSManagedObject *contatoManagedObject;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) NSEntityDescription *entityDescription;
 @property (weak, nonatomic) IBOutlet UITextField *enderecoTextField;
-
+@property NSMutableArray *addresses;
+@property NSMutableArray <MKPointAnnotation*>* points;
+@property MKPolyline * line;
+@property NSURLSession * session;
 //-(void)setContatoManagedObject:(NSManagedObject *)object;
 
 @end
@@ -35,6 +40,10 @@
     }
     _geocoder = [[CLGeocoder alloc]init];
     // Do any additional setup after loading the view.
+    
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration defaultSessionConfiguration];NSURLCache * cache = [[NSURLCache alloc] initWithMemoryCapacity:200 * 1024 * 1024 diskCapacity:1024 * 1024 * 1024 diskPath:@"/MyCacheDirectory"];
+    //todo session
+    
 }
 - (IBAction)geocode:(id)sender {
     [self.geocoder geocodeAddressString:_enderecoTextField.text completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -43,6 +52,11 @@
         }
         [placemarks enumerateObjectsUsingBlock:^(CLPlacemark * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSLog(@"%@",obj);
+            Address * address = [[Address alloc]initWithPlacemark:obj withTitle:@"Titulo" andWithSubtitle:@"Subtitulo"];
+            
+            
+            [self.map addAnnotation:address];
+            
         }];
     }];
     
@@ -156,6 +170,46 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - MKMapViewDelegate
+-(nullable MKAnnotationView *)mapView:(MKMapView *) mapView viewForAnnotation:(nonnull id<MKAnnotation>)annotation {
+    if([annotation isKindOfClass:[Address class]]){
+        MKPinAnnotationView * view = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"Address"];
+        return view;
+    }
+    return nil;
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(nonnull MKUserLocation *)userLocation{
+    
+    MKPointAnnotation *point = [[MKPointAnnotation alloc]init];
+    point.coordinate = userLocation.coordinate;
+    [_points addObject:point];
+    
+    
+        [mapView removeOverlay:_line];
+    
+    CLLocationCoordinate2D * coords = malloc([_points count] * sizeof(CLLocationCoordinate2D));
+    
+//    double * double_coords = (double *)coords;
+    for (int i = 0; i < [_points count]; i++) {
+        coords[i] = _points[i].coordinate;
+    }
+    
+    _line = [MKPolyline polylineWithCoordinates:coords count:[_points count]];
+    free(coords);
+    [mapView addOverlay:_line];
+}
+
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(nonnull id<MKOverlay>)overlay{
+    if([overlay isKindOfClass:[MKPolyline class]]){
+        MKPolylineRenderer * renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+        [renderer setLineWidth:2];
+        [renderer setStrokeColor:[UIColor greenColor]];
+        return renderer;
+    }
+    return nil;
+}
 /*
 #pragma mark - Navigation
 
